@@ -1,0 +1,47 @@
+<!-- Третья страница: Поле Чудес -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квест: Поле Чудес</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input, button { padding: 10px; margin: 10px; }
+        .word { font-size: 24px; letter-spacing: 10px; }
+    </style>
+    <script>
+        var word = 'романтика';
+        var guessedWord = '_'.repeat(word.length).split('');
+        
+        function checkLetter() {
+            var letter = document.getElementById('letter').value.toLowerCase();
+            if (letter.length !== 1) {
+                alert('Введите одну букву!');
+                return;
+            }
+            var found = false;
+            for (var i = 0; i < word.length; i++) {
+                if (word[i] === letter) {
+                    guessedWord[i] = letter;
+                    found = true;
+                }
+            }
+            document.getElementById('wordDisplay').textContent = guessedWord.join(' ');
+            if (!guessedWord.includes('_')) {
+                alert('Поздравляю! Последняя подсказка спрятана под подушкой!');
+            }
+            if (!found) {
+                alert('Такой буквы нет! Попробуй ещё.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Поле Чудес</h1>
+    <p>Отгадай слово: оно связано с любовью и уютными вечерами.</p>
+    <p id="wordDisplay" class="word">_ _ _ _ _ _ _ _ _</p>
+    <input type="text" id="letter" placeholder="Введите букву" maxlength="1">
+    <button onclick="checkLetter()">Проверить</button>
+</body>
+</html>
